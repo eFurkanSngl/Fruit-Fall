@@ -1,55 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Coroutine : MonoBehaviour
 {
-
-    [SerializeField] private GameObject prefab;
-    [SerializeField] private BoxCollider2D col;
-    [SerializeField] private List<GameObject> gameObjects = new List<GameObject>();
+   
+    //[SerializeField] private BoxCollider2D col;
+    [SerializeField] private GameObject[] gameObjects; 
+    
 
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(SpawnPrefab());
+      
+      
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     IEnumerator SpawnPrefab()
     {
         while (true)
         {
-            int randomIndex = Random.Range(0, gameObjects.Count);
-            prefab = gameObjects[randomIndex];
-            // listeyi Random olarak aldýk
-
-            Bounds bounds = col.bounds;
-            //float x = Random.Range(bounds.min.x, bounds.max.x);
-           //float y = Random.Range(bounds.min.y, bounds.max.y);
-            // Collider ÝLe bir sýnýr belirledik
-
-            Vector2 pos = new Vector2(Random.Range(-8,8),3f);
-            // Tam deðer yuvaraladýk
-
-
-            GameObject Instan = Instantiate(prefab, pos, Quaternion.identity);
-            // Obje yarattýk
-
             
-            
+           
+            for(int i = 0; i < 3; i++) // 5 tane Prefab çýkmasýný istiyoruz
+            {
+                int randomIndex = Random.Range(0, gameObjects.Length); // Random 0 ile liste uzunluðu arasýnda bir deðer alsýn
+                GameObject prefab = gameObjects[randomIndex]; // Dönen deðerleri prefbe atýyoruz
 
+                Vector2 pos = new Vector2(Random.Range(-8,8),3f); // yaratacaðý konum
 
-            yield return new WaitForSeconds(4f);
-            // 2sn bekledik tekrar ettik
+                GameObject Instan = Instantiate(prefab, pos, Quaternion.identity);// Yaratma methodu
+            }
+
+            yield return new WaitForSeconds(1f);// 2sn bekledik tekrar ettik
+           
+                //Bounds bounds = col.bounds;  // Collider ÝLe bir sýnýr belirledik
+                //float x = Random.Range(bounds.min.x, bounds.max.x);
+                //float y = Random.Range(bounds.min.y, bounds.max.y);
         }
     }
+
+    
+
+
+    
+
 
 }
 
