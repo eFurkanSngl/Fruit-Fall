@@ -30,4 +30,11 @@ public class ScoreManager : MonoBehaviour
             scoreText.text = "Score:"  + _score.ToString();
         }
     }
+
+
+    public void GameOver()
+    {
+        Time.timeScale = 0;
+        Debug.Log("Game Over");
+    }
 }

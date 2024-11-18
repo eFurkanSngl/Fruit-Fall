@@ -8,9 +8,8 @@ public class Coroutine : MonoBehaviour
 {
    
     //[SerializeField] private BoxCollider2D col;
-    [SerializeField] private GameObject[] gameObjects; 
-    
-
+    [SerializeField] private GameObject[] gameObjects;
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -24,14 +23,16 @@ public class Coroutine : MonoBehaviour
         {
             
            
-            for(int i = 0; i < 3; i++) // 5 tane Prefab çýkmasýný istiyoruz
+            for(int i = 0; i < 4; i++) // 5 tane Prefab çýkmasýný istiyoruz
             {
                 int randomIndex = Random.Range(0, gameObjects.Length); // Random 0 ile liste uzunluðu arasýnda bir deðer alsýn
                 GameObject prefab = gameObjects[randomIndex]; // Dönen deðerleri prefbe atýyoruz
 
-                Vector2 pos = new Vector2(Random.Range(-8,8),3f); // yaratacaðý konum
+                Vector2 pos = new Vector2(Random.Range(-8,8),5f); // yaratacaðý konum
 
                 GameObject Instan = Instantiate(prefab, pos, Quaternion.identity);// Yaratma methodu
+                
+                
             }
 
             yield return new WaitForSeconds(1f);// 2sn bekledik tekrar ettik

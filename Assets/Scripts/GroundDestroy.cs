@@ -17,14 +17,13 @@ public class GroundDestroy : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    private void OnMouseDown()  // MouseDown Obje de bir Collider var ise çalýþýr ve kameranýn görebildiði bir yerde olmasý gerekir.
-    {
-        if (gameObject.CompareTag("Bait"))
+        else if(collision.gameObject.CompareTag("Vehicle"))
         {
+            scoreManager.IncrementScore(15);
             Destroy(gameObject);
-            scoreManager.IncrementScore(10);
         }
     }
+
+   
+
 }
